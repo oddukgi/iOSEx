@@ -1,0 +1,6 @@
+framework module Pods_FloatingPanelEx {
+  umbrella header "Pods-FloatingPanelEx-umbrella.h"
+
+  export *
+  module * { export * }
+}
