@@ -22,7 +22,12 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private let baseURL = "https://free-nba.p.rapidapi.com/players?"
-
+    private let headers = [
+        "x-rapidapi-key": "3be32bb609mshcb8bba7b0381987p1b269djsn3b94b2065380",
+        "x-rapidapi-host": "free-nba.p.rapidapi.com"
+    ]
+    
+    
 //  API Link: https://rapidapi.com/theapiguy/api/free-nba/
 
     func getPlayers( page: Int, success: (([Player]?, Meta?) -> Void)? = nil,
@@ -37,7 +42,7 @@ class NetworkManager {
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 2.0)
         request.httpMethod = "GET"
-//        request.allHTTPHeaderFields = headers
+        request.allHTTPHeaderFields = headers
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let _ = error {
