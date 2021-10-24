@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,7 +44,6 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ZdZ-XT-Mkw" secondAttribute="trailing" constant="10" id="Hrl-z2-pCm"/>
                         <constraint firstItem="ZdZ-XT-Mkw" firstAttribute="leading" secondItem="g8d-hZ-BAm" secondAttribute="leading" constant="10" id="KKW-jk-uI5"/>
-                        <constraint firstItem="ZdZ-XT-Mkw" firstAttribute="centerX" secondItem="g8d-hZ-BAm" secondAttribute="centerX" id="PIN-xB-Z1Q"/>
                         <constraint firstItem="ZdZ-XT-Mkw" firstAttribute="top" secondItem="g8d-hZ-BAm" secondAttribute="top" constant="20" id="ZS0-rg-A0k"/>
                         <constraint firstAttribute="bottom" secondItem="ZdZ-XT-Mkw" secondAttribute="bottom" constant="10" id="eXs-MZ-tcP"/>
                         <constraint firstAttribute="trailing" secondItem="bvF-1i-nid" secondAttribute="trailing" id="f9l-cu-1G6"/>

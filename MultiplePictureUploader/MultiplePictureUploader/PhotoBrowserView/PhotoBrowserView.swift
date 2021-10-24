@@ -33,6 +33,8 @@ public class PhotoBrowserView: UIView, UIScrollViewDelegate {
     
     public var margin: CGFloat = 0
     public var padding: CGFloat = 0
+    
+    public var deleteBtn: UIButton!
 
     var btnTrash: UIButton!
     public var photos: [UIImage] {
@@ -61,6 +63,7 @@ public class PhotoBrowserView: UIView, UIScrollViewDelegate {
     
     public override init(frame: CGRect) {
         pagingScrollView = UIScrollView()
+    
         super.init(frame: frame)
     }
     
@@ -100,8 +103,14 @@ public class PhotoBrowserView: UIView, UIScrollViewDelegate {
         visiblePages.removeAll()
         
         pagingScrollView.contentOffset = contentOffsetForPage(atIndex: _currentPageIndex)
+        createDeleteButton()
         createPages()
+        
+        let boundsSize = self.bounds.size
+        deleteBtn.frame = CGRect(x: boundsSize.width - 25, y: 5, width: 25, height: 25)
     }
+    
+    
     
     private func createPages() {
         if numberOfPhotos() == 0 { return }
@@ -141,7 +150,24 @@ public class PhotoBrowserView: UIView, UIScrollViewDelegate {
         }
     }
     
+    func createDeleteButton() {
+        deleteBtn = UIButton(type: .custom)
+        let deleteImg = UIImage(named: "Delete")
+  
+        deleteBtn.clipsToBounds = true
+        deleteBtn.contentMode = .scaleAspectFill
+        deleteBtn.setImage(deleteImg, for: .normal)
+        deleteBtn.addTarget(self, action: #selector(deleteImage(_:)), for: .touchUpInside)
+        deleteBtn.adjustsImageWhenHighlighted = false
+        deleteBtn.enlargeValidTouchArea(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        addSubview(self.deleteBtn)
 
+    }
+    
+    @objc func deleteImage(_ sender: UIButton) {
+        let image = photos[currentPageIndex]
+        self.deleteImage(image: image)
+    }
     
     func onTap() {
         delegate?.photoBrowser(self, firedEvent: .tap)
@@ -158,6 +184,7 @@ public class PhotoBrowserView: UIView, UIScrollViewDelegate {
     
     func deleteImage(image: UIImage) {
         photos.remove(at: currentPageIndex)
+
         delegate?.deleteImage(image: image)
     }
 

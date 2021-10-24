@@ -169,10 +169,14 @@ extension MultiplePhotosViewController: PhotoBrowserDelegate {
             selectedImages.remove(at: Int(index))
        
             if selectedImages.count == 0 {
-
+                photoBrowserView.deleteBtn.removeFromSuperview()
+                
+                for subview in frameStackView.subviews {
+                    if subview == photoBrowserView {
+                        subview.removeFromSuperview()
+                    }
+                }
                 labelHeightConstraint.constant = 0
-                photoBrowserView.removeFromSuperview()
-                photoBrowserView = nil
                 placeholderImageView.isHidden = false
      
             } else {
@@ -268,23 +272,14 @@ extension MultiplePhotosViewController {
         let callback = { [weak self] (sucImages: [UIImage], sucAssets: [PHAsset],
                                       errorAssets: [PHAsset], errorIndexs: [Int]) in
             hud.hide()
-            
-            func call() {
- 
+
                 if !errorAssets.isEmpty {
                     self?.selectImageRequestErrorBlock?(errorAssets, errorIndexs)
                 } else {
                     self?.selectImageBlock?(sucImages, sucAssets, false)
                 }
-            }
             
-            if let vc = viewController {
 
-                vc.dismiss(animated: true) {
-                    call()
-                }
-            }
-            
             self?.arrSelectedModels.removeAll()
             self?.arrDataSources.removeAll()
         }
